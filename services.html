@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services — automatiser les tâches d’une TPE ou PME | Benjamin Huteau</title>
+<meta name="description" content="Devis, relances, appels manqués : ce qu’on peut automatiser, et ce qui reste à vous. Un seul interlocuteur, du début à la fin.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6F9FC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08111D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Benjamin Huteau — Consultant IA">
+<meta property="og:title" content="Services — automatiser les tâches d’une TPE ou PME | Benjamin Huteau">
+<meta property="og:description" content="Devis, relances, appels manqués : ce qu’on peut automatiser, et ce qui reste à vous. Un seul interlocuteur, du début à la fin.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/icone-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+<link rel="preload" href="assets/polices/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Benjamin Huteau",
+  "jobTitle": "Consultant IA",
+  "description": "Automatisation de tâches et formation à l'IA pour les TPE et PME, partout en France, à distance.",
+  "knowsLanguage": "fr",
+  "homeLocation": { "@type": "Place", "name": "Près d'Angers, France" }
+}
+</script>
+</head>
+
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<svg class="cache-visuel" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="motif-lumiere" x1="0" y1="1" x2="1" y2="0">
+      <stop class="motif__ton-pale" offset="0"/>
+      <stop class="motif__ton-vif" offset=".55"/>
+      <stop class="motif__ton-action" offset="1"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="curseur" aria-hidden="true" data-curseur></div>
+<div class="progres" aria-hidden="true" data-progres></div>
+
+<header class="entete">
+  <div class="entete__dedans">
+    <a class="marque" href="index.html">
+      <img class="marque__logo" src="assets/img/logo-bh.webp" width="251" height="160" alt="">
+      <span class="marque__texte">
+        <span class="marque__nom">Benjamin Huteau</span>
+        <span class="marque__metier">Consultant IA</span>
+      </span>
+    </a>
+    <nav class="menu" aria-label="Menu principal">
+      <ul>
+        <li><a href="services.html" aria-current="page">Services</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="entete__actions">
+      <a class="telephone" href="tel:+33199000000" aria-label="Appeler le 01 99 00 00 00">
+        <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h2.9l1.5 4.2-2 1.4a12.5 12.5 0 0 0 6.4 6.4l1.4-2 4.2 1.5v2.9a2.6 2.6 0 0 1-2.6 2.6A15.4 15.4 0 0 1 4 5.6 2.6 2.6 0 0 1 6.6 3z"/></svg>
+        <span>01&nbsp;99&nbsp;00&nbsp;00&nbsp;00</span>
+      </a>
+      <a class="bouton bouton--petit" href="contact.html" data-magnetique>Réserver un appel de 30&nbsp;min</a>
+      <button class="inter" type="button" data-theme-bouton role="switch" aria-checked="false" aria-label="Mode sombre">
+        <span class="inter__piste" aria-hidden="true">
+          <span class="inter__icone inter__icone--jour"><svg class="pic" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/></svg></span>
+          <span class="inter__icone inter__icone--nuit"><svg class="pic" viewBox="0 0 24 24" focusable="false"><path d="M20 14.4A8.4 8.4 0 0 1 9.6 4a8.4 8.4 0 1 0 10.4 10.4z"/></svg></span>
+          <span class="inter__curseur"></span>
+        </span>
+      </button>
+      <a class="entete__appeler" href="tel:+33199000000" aria-label="Appeler le 01 99 00 00 00">
+        <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h2.9l1.5 4.2-2 1.4a12.5 12.5 0 0 0 6.4 6.4l1.4-2 4.2 1.5v2.9a2.6 2.6 0 0 1-2.6 2.6A15.4 15.4 0 0 1 4 5.6 2.6 2.6 0 0 1 6.6 3z"/></svg>
+        <span>Appeler</span>
+      </a>
+      <button class="entete__menu" type="button" popovertarget="menu-mobile">
+        <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="menu-mobile" id="menu-mobile" popover aria-label="Menu">
+  <button class="menu-mobile__fermer" type="button" popovertarget="menu-mobile" popovertargetaction="hide">Fermer</button>
+  <ul>
+        <li><a href="services.html" aria-current="page">Services</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="bouton" href="contact.html">Réserver un appel de 30&nbsp;min</a>
+</nav>
+
+<main id="contenu">
+
+<section class="partie partie--clip" id="services" aria-labelledby="titre-services">
+    <div class="points" aria-hidden="true"></div>
+    <svg class="motif motif--haut-droite" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="motif__large" d="M-20 520 C 120 360, 380 380, 620 120"/>
+      <path class="motif__fin" d="M-20 520 C 120 360, 380 380, 620 120"/>
+    </svg>
+    <div class="partie__dedans">
+      <div class="partie__tete" data-reveal>
+        <p class="surtitre">Services</p>
+        <h1 class="partie__titre" id="titre-services">Pourquoi utiliser l’IA&nbsp;?</h1>
+        <p class="partie__chapo">Parce que ces problèmes reviennent dans presque toutes les petites entreprises.</p>
+      </div>
+      <ul class="galeres" data-galeres data-reveal-groupe>
+        <li class="galere vitre" data-galere data-reveal="monte">
+          <h2 class="galere__dire">Vos devis se font le soir, après la journée.</h2>
+          <div class="galere__reponse"><div class="galere__dedans">
+            <dl class="reponse">
+              <div><dt>Ce que l’IA apporte</dt><dd>Le devis, prêt à relire.</dd></div>
+              <div><dt>Ce qui reste à vous</dt><dd>Le prix, et la décision d’envoyer.</dd></div>
+            </dl>
+            <p class="galere__note"><span class="etiquette etiquette--claire">Exemple</span> <a class="lien-fleche" href="contact.html#rappel" data-sujet-lien="Mes devis">En parler pendant l’appel</a></p>
+          </div></div>
+        </li>
+        <li class="galere vitre" data-galere data-reveal="monte">
+          <h2 class="galere__dire">Un devis part, pas de réponse, et personne ne relance.</h2>
+          <div class="galere__reponse"><div class="galere__dedans">
+            <dl class="reponse">
+              <div><dt>Ce que l’IA apporte</dt><dd>Le message de relance, prêt à partir.</dd></div>
+              <div><dt>Ce qui reste à vous</dt><dd>Relire, et décider d’envoyer.</dd></div>
+            </dl>
+            <p class="galere__note"><span class="etiquette etiquette--claire">Exemple</span> <a class="lien-fleche" href="contact.html#rappel" data-sujet-lien="Mes relances">En parler pendant l’appel</a></p>
+          </div></div>
+        </li>
+        <li class="galere vitre" data-galere data-reveal="monte">
+          <h2 class="galere__dire">Le téléphone sonne quand vous avez les mains prises.</h2>
+          <div class="galere__reponse"><div class="galere__dedans">
+            <dl class="reponse">
+              <div><dt>Ce que l’IA apporte</dt><dd>Le SMS de réponse après l’appel manqué.</dd></div>
+              <div><dt>Ce qui reste à vous</dt><dd>Le texte du message, que vous validez, et le rappel du client.</dd></div>
+            </dl>
+            <p class="galere__note"><span class="etiquette etiquette--claire">Exemple</span> <a class="lien-fleche" href="contact.html#rappel" data-sujet-lien="Mes appels manqués">En parler pendant l’appel</a></p>
+          </div></div>
+        </li>
+        <li class="galere vitre" data-galere data-reveal="monte">
+          <h2 class="galere__dire">Les mêmes questions reviennent, par mail et par message.</h2>
+          <div class="galere__reponse"><div class="galere__dedans">
+            <dl class="reponse">
+              <div><dt>Ce que l’IA apporte</dt><dd>Des réponses types, à relire.</dd></div>
+              <div><dt>Ce qui reste à vous</dt><dd>Le ton, et la décision d’envoyer.</dd></div>
+            </dl>
+            <p class="galere__note"><span class="etiquette etiquette--claire">Exemple</span> <a class="lien-fleche" href="contact.html#rappel" data-sujet-lien="Les questions qui reviennent">En parler pendant l’appel</a></p>
+          </div></div>
+        </li>
+        <li class="galere vitre" data-galere data-reveal="monte">
+          <h2 class="galere__dire">Vos clients sont rappelés entre deux rendez-vous, quand vous y pensez.</h2>
+          <div class="galere__reponse"><div class="galere__dedans">
+            <dl class="reponse">
+              <div><dt>Ce que l’IA apporte</dt><dd>Une proposition de créneaux, ou le message de confirmation.</dd></div>
+              <div><dt>Ce qui reste à vous</dt><dd>Le choix du créneau, et la relation avec le client.</dd></div>
+            </dl>
+            <p class="galere__note"><span class="etiquette etiquette--claire">Exemple</span> <a class="lien-fleche" href="contact.html#rappel" data-sujet-lien="Mes rappels et mes rendez-vous">En parler pendant l’appel</a></p>
+          </div></div>
+        </li>
+        <li class="galere vitre" data-galere data-reveal="monte">
+          <h2 class="galere__dire">Les mêmes informations sont recopiées d’un logiciel à l’autre.</h2>
+          <div class="galere__reponse"><div class="galere__dedans">
+            <dl class="reponse">
+              <div><dt>Ce qu’on regarde ensemble</dt><dd>Quels logiciels relier, et quelles informations doivent passer de l’un à l’autre.</dd></div>
+              <div><dt>Ce qui reste à vous</dt><dd>Décider ce qui circule. C’est un projet plus complexe, chiffré sur devis.</dd></div>
+            </dl>
+            <p class="galere__note"><span class="etiquette etiquette--claire">Exemple</span> <a class="lien-fleche" href="contact.html#rappel" data-sujet-lien="Les informations à recopier">En parler pendant l’appel</a></p>
+          </div></div>
+        </li>
+      </ul>
+      <p class="metiers-ligne" id="secteurs" data-reveal>Bâtiment, commerces, restauration, services, immobilier, formation&nbsp;: ce qui compte, c’est la tâche. Ce sont des exemples, pas des résultats mesurés.</p>
+
+      <div class="pour-qui" data-reveal-groupe>
+        <div class="pour-qui__bloc pour-qui__bloc--oui" data-reveal="gauche">
+          <h3>C’est pour vous si…</h2>
+          <ul>
+            <li><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>vos devis se font le soir, après la journée.</li>
+            <li><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>vous perdez des clients faute de relance.</li>
+            <li><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>vous voulez commencer petit, sur une seule tâche.</li>
+          </ul>
+        </div>
+        <div class="pour-qui__bloc" data-reveal="droite">
+          <h3>Ce n’est pas pour vous si…</h2>
+          <ul>
+            <li><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>vous cherchez un logiciel tout fait à installer seul.</li>
+            <li><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>vous voulez tout automatiser d’un coup, sans rien valider.</li>
+            <li><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>vous ne voulez pas consacrer un premier appel au diagnostic.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="partie__suite" data-reveal>
+        <a class="bouton" href="contact.html" data-magnetique>Réserver un appel de 30&nbsp;min</a>
+      </div>
+    </div>
+  </section>
+
+<section class="partie partie--clip" id="exemple" aria-labelledby="titre-exemple">
+    <svg class="motif motif--bas" viewBox="0 0 520 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="motif__large" d="M-30 470 C 60 250, 300 120, 560 210"/>
+      <path class="motif__fin" d="M-30 470 C 60 250, 300 120, 560 210"/>
+    </svg>
+    <div class="partie__dedans exemple">
+      <div class="exemple__texte" data-reveal="gauche">
+        <h2 class="partie__titre" id="titre-exemple">Un devis&nbsp;: l’IA prépare, vous validez.</h2>
+        <p class="partie__chapo">Un seul interlocuteur, du début à la fin.</p>
+      </div>
+      <div class="schema-zone" data-reveal="droite">
+        <figure class="schema" data-schema aria-labelledby="schema-titre">
+          <figcaption class="schema__titre" id="schema-titre">
+            <span class="etiquette">Exemple</span>
+            <span>Cliquez sur «&nbsp;Valider&nbsp;» pour voir la suite.</span>
+          </figcaption>
+          <div class="schema__corps">
+            <figure class="portrait vitre">
+              <img src="assets/img/benjamin-portrait.webp" width="480" height="600" alt="Benjamin Huteau">
+              <figcaption><strong>Benjamin Huteau</strong><span>Consultant IA</span><span>près d’Angers</span></figcaption>
+            </figure>
+            <ol class="schema__etapes">
+              <li class="etape vitre">
+                <span class="etape__pic"><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></span>
+                <div class="etape__texte"><strong>Une demande de devis arrive</strong><span>Par mail ou par message, pendant que vous travaillez.</span></div>
+              </li>
+              <li class="etape vitre">
+                <span class="etape__pic"><svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+                <div class="etape__texte"><strong>L’IA prépare le devis</strong><span>Il est prêt à relire. Rien n’est envoyé.</span></div>
+              </li>
+              <li class="etape etape--accord vitre" data-accord>
+                <span class="etape__pic">
+                  <svg class="pic pic--attente" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  <svg class="pic pic--valide" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.8"/></svg>
+                </span>
+                <div class="etape__texte" aria-live="polite">
+                  <strong data-accord-titre>En attente de votre accord</strong>
+                  <span data-accord-texte>Vous relisez, vous fixez le prix, vous envoyez.</span>
+                </div>
+                <button class="valider" type="button" data-valider hidden>Valider (exemple)</button>
+              </li>
+            </ol>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied__dedans">
+    <div>
+      <a class="marque pied__marque" href="index.html">
+        <img class="marque__logo" src="assets/img/logo-bh.webp" width="251" height="160" alt="" loading="lazy">
+        <span class="marque__texte">
+          <span class="marque__nom">Benjamin Huteau</span>
+          <span class="marque__metier">Consultant IA</span>
+        </span>
+      </a>
+      <p>Basé près d’Angers · France entière à distance.</p>
+      <p>Automatisation de tâches et formation à l’IA pour les petites entreprises.</p>
+    </div>
+    <nav aria-label="Pied de page">
+      <h2>Sur ce site</h2>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html#preuve">Un vrai test</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="tarifs.html#questions">Vos questions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div id="legal">
+      <h2>Mentions légales et confidentialité</h2>
+      <p><a href="mentions-legales.html">Mentions légales</a><br><a href="confidentialite.html">Confidentialité et données personnelles</a></p>
+      <p class="pied__note">Maquettes : les champs entre crochets seront remplis à la création de l’entreprise.</p>
+    </div>
+  </div>
+  <p class="pied__fin">© 2026 Benjamin Huteau · Maquette du 17/11/2026&nbsp;: ce site n’est pas encore en ligne.</p>
+</footer>
+
+<div class="barre" data-barre>
+  <button class="bouton bouton--secondaire" type="button" popovertarget="menu-mobile">Menu</button>
+  <a class="bouton bouton--secondaire" href="tel:+33199000000">Appeler</a>
+  <a class="bouton" href="contact.html"><span class="bouton__long">Réserver un appel de 30&nbsp;min</span><span class="bouton__court">Réserver un appel</span><span class="bouton__mini">Réserver</span></a>
+</div>
+
+</body>
+</html>

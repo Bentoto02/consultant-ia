@@ -1,0 +1,1071 @@
+/* ==========================================================================
+   SITE DE BENJAMIN HUTEAU, CONSULTANT IA — feuille de style, version 9.
+   Reprise de la V8 le 17/11/2026. Ce qui change :
+   - un thème sombre complet, à bascule (bouton dans l'en-tête) ;
+   - un motif signature répété : l'arc de lumière et le réseau de points ;
+   - des animations franches : apparitions au défilement, titre mot à mot,
+     boutons qui suivent la souris, halo de curseur, barre de progression,
+     section épinglée qui défile de côté, cartes qui s'inclinent ;
+   - un grain fin sur toute la page, pour enlever l'aspect « plat ».
+   Les textes de la page ne changent pas : seuls la mise en scène et le décor.
+   RÈGLES :
+   - toute couleur, taille, espace, arrondi passe par un jeton ;
+   - sans programme, tout le texte reste visible et lisible ;
+   - sans programme, la section « Comment ça se passe » reste une liste normale ;
+   - avec « réduire les animations », tout arrive immédiatement à sa place.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("../polices/schibsted-grotesk-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+
+/* ---------- 1. Les jetons ---------- */
+:root {
+  color-scheme: light;
+
+  /* l'encre : le bleu nuit du logo BH. Elle ne change pas avec la teinte. */
+  --encre: #0E2346;
+  --encre-rvb: 14, 35, 70;
+  --encre-douce: #46536A;
+
+  /* la teinte : le gris bleuté « acier », choisi par Bentoto le 16/11/2026. */
+  --action: #3A5F85;
+  --action-rvb: 58, 95, 133;
+  --action-clair-rvb: 68, 108, 150;
+  --action-fonce: #284766;
+  --action-fonce-rvb: 40, 71, 102;
+  --lumiere: #D6E4F2;
+  --lumiere-rvb: 214, 228, 242;
+  --lumiere-vive: #9FBFDD;
+  --lumiere-vive-rvb: 159, 191, 221;
+  --lumiere-pale: #EAF2F9;
+  --eau-rvb: 222, 234, 246;
+  --nuit: #18293D;
+  --fond: #F6F9FC;
+  --fond-bande: rgba(214, 228, 242, .38);
+  --surligne: #D6E4F2;
+  /* la force du réseau du premier écran */
+  --reseau-trait: .16;
+  --reseau-point: .55;
+
+  --bord: #7A8499;
+  --blanc: #FFFFFF;
+  --filet: rgba(var(--encre-rvb), .14);
+  --sur-encre: #FFFFFF;
+  --sur-encre-doux: #C9D3E0;
+  --alerte: #A3221A;
+  --alerte-claire: #FFD5D0;
+
+  /* le bouton principal : deux tons qui se suivent, et un texte blanc lisible */
+  --bouton-1-rvb: 68, 108, 150;
+  --bouton-2-rvb: 58, 95, 133;
+  --bouton-texte: #FFFFFF;
+
+  /* le texte posé sur la couleur d'accent : blanc sur le bleu foncé, encre sur le bleu clair */
+  --sur-action: #FFFFFF;
+  --sur-action-doux: rgba(255, 255, 255, .9);
+
+  /* les surfaces qui flottent au-dessus de la page : menu du téléphone, barre du bas, puce du menu */
+  --verre-menu: linear-gradient(135deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, .3));
+  --voile: rgba(14, 35, 70, .45);
+  --puce-fond: rgba(255, 255, 255, .7);
+  --puce-texte: #0E2346;
+
+  /* le verre, façon iPhone */
+  --verre: linear-gradient(135deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, .08));
+  --verre-plein: rgba(255, 255, 255, .92);
+  --verre-bord: rgba(255, 255, 255, .7);
+  --verre-flou: blur(14px) saturate(1.9);
+  --verre-ombre:
+    inset 0 1.5px 0 rgba(255, 255, 255, .95),
+    inset 1px 0 0 rgba(255, 255, 255, .45),
+    inset 0 -1px 0 rgba(255, 255, 255, .3),
+    0 0 0 1px rgba(var(--encre-rvb), .05),
+    0 28px 50px -26px rgba(var(--encre-rvb), .5),
+    0 6px 14px -8px rgba(var(--encre-rvb), .22);
+  --halo: 0 0 0 1px var(--action), 0 24px 44px -26px rgba(var(--action-rvb), .55);
+
+  /* la force des lueurs de fond, et du grain */
+  --force-lueur: .62;
+  --grain: .055;
+  --grain-mode: multiply;
+
+  /* tailles de texte */
+  --t-mention: .875rem;
+  --t-petit: 1rem;
+  --t-texte: 1.125rem;
+  --t-accroche: 1.25rem;
+  --t-soustitre: 1.375rem;
+  --t-prix: 2rem;
+  --t-partie: 2.5rem;
+  --t-titre: clamp(2.375rem, 1.1rem + 3.5vw, 3.625rem);
+  --t-slogan: clamp(2.75rem, 1rem + 5.6vw, 5rem);
+
+  /* espaces : multiples de 4 et de 8 */
+  --e1: 4px; --e2: 8px; --e3: 12px; --e4: 16px; --e5: 24px;
+  --e6: 32px; --e7: 48px; --e8: 64px; --e9: 96px; --e10: 128px; --e11: 160px;
+
+  /* arrondis : 4 valeurs, pas une de plus */
+  --r-petit: 8px; --r-moyen: 14px; --r-carte: 20px; --r-grand: 28px;
+  --r-bouton: 999px;
+
+  /* ombres : 3 valeurs */
+  --ombre-1: 0 1px 2px rgba(var(--encre-rvb), .08);
+  --ombre-2: 0 14px 30px -16px rgba(var(--encre-rvb), .34);
+  --ombre-3: 0 30px 60px -28px rgba(var(--encre-rvb), .42);
+
+  /* mouvement : quatre durées, deux courbes */
+  --d-reponse: .16s; --d-ouvrir: .28s; --d-bascule: .34s; --d-trajet: .6s; --d-derouler: .8s;
+  --c-arrivee: cubic-bezier(.22, 1, .36, 1);
+  --c-trajet: ease-in-out;
+
+  --police: "Schibsted Grotesk", "Segoe UI", system-ui, Arial, sans-serif;
+  --police-lecture: Georgia, "Times New Roman", serif;
+  --largeur: 1200px;
+}
+
+/* ---------- 1 bis. Le thème sombre ----------
+   Ces deux blocs doivent rester identiques : l'un s'applique quand on a cliqué sur la lune,
+   l'autre quand l'ordinateur est déjà en thème sombre et qu'on n'a rien choisi. */
+:root[data-theme="sombre"] {
+  color-scheme: dark;
+  --encre: #E6EEF7; --encre-rvb: 230, 238, 247; --encre-douce: #9FB2C6;
+  --action: #6E9ECF; --action-rvb: 110, 158, 207; --action-clair-rvb: 126, 174, 222;
+  --action-fonce: #8FB6DA; --action-fonce-rvb: 143, 182, 218;
+  --lumiere: #17304A; --lumiere-rvb: 23, 48, 74;
+  --lumiere-vive: #2B4E70; --lumiere-vive-rvb: 43, 78, 112;
+  --lumiere-pale: #12253A; --eau-rvb: 16, 34, 54;
+  --nuit: #101F31; --fond: #08111D; --fond-bande: rgba(255, 255, 255, .035);
+  --surligne: rgba(110, 158, 207, .28);
+  --reseau-trait: .3; --reseau-point: .78;
+  --bord: #3E5A75; --blanc: #102134; --filet: rgba(255, 255, 255, .12);
+  --sur-encre: #F2F7FC; --sur-encre-doux: #A8BCCE;
+  --alerte: #FF8A7A; --alerte-claire: #FFC9C0;
+  --bouton-1-rvb: 52, 104, 152; --bouton-2-rvb: 38, 78, 116;
+  --sur-action: #071D33; --sur-action-doux: rgba(7, 29, 51, .82);
+  --verre-menu: linear-gradient(135deg, rgba(30, 54, 80, .96), rgba(14, 28, 44, .96));
+  --voile: rgba(0, 0, 0, .62);
+  --puce-fond: rgba(255, 255, 255, .14);
+  --puce-texte: #E6EEF7;
+  --verre: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03));
+  --verre-plein: rgba(14, 28, 44, .92);
+  --verre-bord: rgba(255, 255, 255, .16);
+  --verre-ombre:
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    inset 1px 0 0 rgba(255, 255, 255, .07),
+    0 0 0 1px rgba(0, 0, 0, .35),
+    0 28px 50px -26px rgba(0, 0, 0, .8),
+    0 6px 14px -8px rgba(0, 0, 0, .5);
+  --force-lueur: .2; --grain: .05; --grain-mode: overlay;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="clair"]) {
+    color-scheme: dark;
+    --encre: #E6EEF7; --encre-rvb: 230, 238, 247; --encre-douce: #9FB2C6;
+    --action: #6E9ECF; --action-rvb: 110, 158, 207; --action-clair-rvb: 126, 174, 222;
+    --action-fonce: #8FB6DA; --action-fonce-rvb: 143, 182, 218;
+    --lumiere: #17304A; --lumiere-rvb: 23, 48, 74;
+    --lumiere-vive: #2B4E70; --lumiere-vive-rvb: 43, 78, 112;
+    --lumiere-pale: #12253A; --eau-rvb: 16, 34, 54;
+    --nuit: #101F31; --fond: #08111D; --fond-bande: rgba(255, 255, 255, .035);
+    --surligne: rgba(110, 158, 207, .28);
+    --reseau-trait: .3; --reseau-point: .78;
+    --bord: #3E5A75; --blanc: #102134; --filet: rgba(255, 255, 255, .12);
+    --sur-encre: #F2F7FC; --sur-encre-doux: #A8BCCE;
+    --alerte: #FF8A7A; --alerte-claire: #FFC9C0;
+    --bouton-1-rvb: 52, 104, 152; --bouton-2-rvb: 38, 78, 116;
+    --sur-action: #071D33; --sur-action-doux: rgba(7, 29, 51, .82);
+    --verre-menu: linear-gradient(135deg, rgba(30, 54, 80, .96), rgba(14, 28, 44, .96));
+    --voile: rgba(0, 0, 0, .62);
+    --puce-fond: rgba(255, 255, 255, .14);
+    --puce-texte: #E6EEF7;
+    --verre: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03));
+    --verre-plein: rgba(14, 28, 44, .92);
+    --verre-bord: rgba(255, 255, 255, .16);
+    --verre-ombre:
+      inset 0 1px 0 rgba(255, 255, 255, .18),
+      inset 1px 0 0 rgba(255, 255, 255, .07),
+      0 0 0 1px rgba(0, 0, 0, .35),
+      0 28px 50px -26px rgba(0, 0, 0, .8),
+      0 6px 14px -8px rgba(0, 0, 0, .5);
+    --force-lueur: .2; --grain: .05; --grain-mode: overlay;
+  }
+}
+
+/* ---------- 2. Les bases ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: clip; }
+body { overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font: 400 var(--t-texte)/1.6 var(--police);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .5s ease, color .5s ease;
+}
+body::before {                            /* les grandes lueurs fixes : c'est elles qu'on voit à travers le verre */
+  content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(60vw 50vh at 12% 8%, rgba(var(--lumiere-vive-rvb), var(--force-lueur)), transparent 70%),
+    radial-gradient(55vw 55vh at 92% 30%, rgba(var(--action-rvb), calc(var(--force-lueur) * .42)), transparent 70%),
+    radial-gradient(60vw 50vh at 20% 82%, rgba(var(--action-rvb), calc(var(--force-lueur) * .36)), transparent 70%),
+    radial-gradient(50vw 45vh at 85% 92%, rgba(var(--lumiere-vive-rvb), var(--force-lueur)), transparent 70%);
+  transition: background .6s ease;
+}
+body::after {                             /* le grain : ce qui enlève l'aspect « aplat d'écran » */
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  opacity: var(--grain); mix-blend-mode: var(--grain-mode);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23g)'/></svg>");
+  background-size: 180px 180px;
+}
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure, fieldset, table { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+fieldset { padding: 0; border: 0; min-width: 0; }
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: var(--action); text-underline-offset: .18em; text-decoration-thickness: .08em; }
+a:hover { color: var(--action-fonce); }
+strong { font-weight: 600; }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 2px; border-radius: var(--r-petit); }
+[id] { scroll-margin-top: 104px; }
+[hidden] { display: none !important; }
+
+.lien-evitement {
+  position: absolute; left: var(--e4); top: -80px; z-index: 100;
+  padding: var(--e3) var(--e4); border-radius: var(--r-petit);
+  background: var(--encre); color: var(--fond); font-weight: 600;
+}
+.lien-evitement:focus { top: var(--e4); color: var(--fond); }
+.cache-visuel {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.pic {
+  width: 24px; height: 24px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.etiquette {
+  display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px;
+  background: var(--encre); color: var(--fond);
+  font-size: var(--t-petit); font-weight: 600; line-height: 1.3; white-space: nowrap;
+}
+.etiquette--claire { background: var(--lumiere); color: var(--encre); }
+
+.lien, .partie__suite p a { display: inline-flex; align-items: center; min-height: 44px; }
+.lien-fleche {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px;
+  font-size: var(--t-petit); font-weight: 600; line-height: 1.3;
+}
+.lien-fleche::after { content: "\2192"; }
+
+/* ---------- 3. Le bouton : du verre, avec un reflet qui balaie ---------- */
+.bouton {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 26px;
+  border: 1px solid rgba(255, 255, 255, .38); border-radius: var(--r-bouton);
+  background: linear-gradient(180deg, rgba(var(--bouton-1-rvb), .96), rgba(var(--bouton-2-rvb), .96));
+  -webkit-backdrop-filter: blur(14px) saturate(1.8); backdrop-filter: blur(14px) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .5),
+    inset 0 -1px 0 rgba(var(--encre-rvb), .3),
+    0 18px 30px -14px rgba(var(--action-rvb), .8),
+    0 2px 6px -2px rgba(var(--encre-rvb), .35);
+  color: var(--bouton-texte);
+  font: 600 1.0625rem/1.1 var(--police);
+  text-decoration: none; text-align: center; cursor: pointer;
+  transition: background var(--d-ouvrir) var(--c-arrivee), box-shadow var(--d-ouvrir) var(--c-arrivee), color var(--d-ouvrir) var(--c-arrivee);
+}
+.bouton::before {                       /* le reflet du haut */
+  content: ""; position: absolute; inset: 1px 1px 52% 1px; z-index: -1;
+  border-radius: 999px 999px 48% 48% / 999px 999px 80% 80%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+.bouton::after {                        /* la lumière qui traverse le bouton au survol */
+  content: ""; position: absolute; inset: -40% -70%; z-index: -1;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .45) 50%, transparent 58%);
+  transform: translateX(-60%); opacity: 0; pointer-events: none;
+}
+.bouton:hover { background: linear-gradient(180deg, rgba(var(--bouton-2-rvb), .98), rgba(var(--action-fonce-rvb), .98)); color: var(--bouton-texte); }
+.bouton--secondaire {
+  border-color: var(--verre-bord);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, .08));
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, .95),
+    inset 0 -1px 0 rgba(255, 255, 255, .35),
+    0 0 0 1px rgba(var(--encre-rvb), .14),
+    0 14px 26px -14px rgba(var(--encre-rvb), .5);
+  color: var(--encre);
+}
+.bouton--secondaire::before { background: linear-gradient(180deg, rgba(255, 255, 255, .85), rgba(255, 255, 255, 0)); }
+.bouton--secondaire:hover { background: linear-gradient(180deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .3)); color: var(--encre); }
+.bouton--petit { min-height: 44px; padding: 0 20px; font-size: 1rem; white-space: nowrap; }
+.bouton--large { width: 100%; }
+.bouton[disabled] { opacity: .55; cursor: not-allowed; }
+.bouton[data-magnetique] { will-change: transform; }
+
+/* ---------- 4. L'en-tête : une barre de verre qui flotte ---------- */
+.entete { position: sticky; top: 12px; z-index: 30; margin-top: 12px; padding-inline: 12px; }
+.entete__dedans {
+  display: flex; align-items: center; gap: var(--e4);
+  max-width: var(--largeur); min-height: 64px; margin-inline: auto; padding: 0 var(--e4);
+  border: 1px solid var(--verre-bord); border-radius: var(--r-bouton);
+  background: var(--verre);
+  -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou);
+  box-shadow: var(--verre-ombre);
+  transition: background var(--d-ouvrir) ease, border-color var(--d-ouvrir) ease;
+}
+.marque { display: flex; align-items: center; gap: var(--e3); min-height: 44px; min-width: 0; color: var(--encre); text-decoration: none; }
+.marque:hover { color: var(--encre); }
+.marque__logo { width: auto; height: 40px; flex: none; border-radius: var(--r-petit); }
+.pied .marque__logo { mix-blend-mode: multiply; }
+.marque__texte { display: grid; min-width: 0; overflow: hidden; }
+.marque__nom { font-size: 1.125rem; font-weight: 700; line-height: 1.2; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.marque__metier { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.25; white-space: nowrap; }
+.menu { margin-left: auto; }
+.menu ul { display: flex; gap: var(--e1); }
+.menu a {
+  display: flex; align-items: center; min-height: 44px; padding: 0 10px; border-radius: var(--r-bouton);
+  color: var(--encre); font-size: 1rem; font-weight: 500; text-decoration: none; white-space: nowrap;
+  transition: background var(--d-reponse) ease, color var(--d-reponse) ease;
+}
+.menu a:hover { background: rgba(255, 255, 255, .35); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), 0 6px 14px -8px rgba(var(--encre-rvb), .45); }
+/* la page où l'on est */
+.menu a[aria-current="page"] { background: rgba(var(--action-rvb), .14); color: var(--encre); font-weight: 700; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5); }
+.menu-mobile a[aria-current="page"] { font-weight: 700; }
+.menu-mobile a[aria-current="page"]::after { content: ""; width: 8px; height: 8px; margin-left: auto; border-radius: 50%; background: var(--action); }
+.entete__actions { display: flex; align-items: center; gap: var(--e3); }
+.telephone {
+  display: flex; align-items: center; gap: var(--e2); min-height: 44px;
+  color: var(--encre); font-size: 1rem; font-weight: 600; text-decoration: none; white-space: nowrap;
+}
+.telephone:hover { color: var(--action-fonce); }
+.entete__appeler, .entete__menu { display: none; }
+/* Quand l'en-tête passe au-dessus du bloc foncé du contact, ses lettres deviennent blanches. */
+.entete--sur-fonce .entete__dedans { border-color: rgba(255, 255, 255, .32); background: linear-gradient(135deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .08)); }
+.entete--sur-fonce .marque, .entete--sur-fonce .marque__metier, .entete--sur-fonce .menu a, .entete--sur-fonce .telephone { color: var(--sur-encre); }
+.entete--sur-fonce .menu a:hover { background: rgba(255, 255, 255, .2); color: var(--sur-encre); }
+.entete--sur-fonce .menu a[aria-current="page"] { background: rgba(255, 255, 255, .22); color: var(--sur-encre); }
+.entete--sur-fonce .inter__piste { border-color: rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .16); }
+.entete--sur-fonce .inter__icone { color: #FFFFFF; }
+.entete--sur-fonce .inter[aria-checked="true"] .inter__icone--nuit { color: #0E2346; }
+:root[data-theme="sombre"] .marque__logo, :root[data-theme="sombre"] .pied .marque__logo { background: var(--fond); mix-blend-mode: normal; }
+
+/* L'interrupteur du thème : le soleil à gauche, la lune à droite, et un bouton qui coulisse.
+   44 px de haut pour rester facile à toucher sur téléphone. */
+.inter {
+  position: relative; display: inline-flex; align-items: center; height: 44px; padding: 0;
+  border: 0; background: none; cursor: pointer; flex: none;
+}
+.inter__piste {
+  position: relative; display: block; width: 64px; height: 32px; border-radius: 999px;
+  border: 1px solid var(--filet);
+  background: linear-gradient(180deg, rgba(var(--encre-rvb), .1), rgba(var(--encre-rvb), .04));
+  box-shadow: inset 0 1px 2px rgba(var(--encre-rvb), .18);
+  transition: background var(--d-ouvrir) ease, border-color var(--d-ouvrir) ease, box-shadow var(--d-ouvrir) ease;
+}
+.inter:hover .inter__piste { border-color: var(--action); }
+.inter:focus-visible { outline: none; }
+.inter:focus-visible .inter__piste { outline: 3px solid var(--action); outline-offset: 2px; }
+.inter__icone {
+  position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 18px; height: 18px; margin-top: -9px;
+  color: var(--encre-douce); transition: color var(--d-ouvrir) ease;
+}
+.inter__icone .pic { width: 15px; height: 15px; stroke-width: 2; }
+.inter__icone--jour { left: 7px; }
+.inter__icone--nuit { right: 7px; }
+.inter__curseur {
+  position: absolute; left: 3px; top: 3px; z-index: 1; width: 26px; height: 26px; border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .06);
+  transition: transform var(--d-bascule) var(--c-arrivee);
+}
+.inter[aria-checked="false"] .inter__icone--jour { color: #0E2346; }
+.inter[aria-checked="true"] .inter__curseur { transform: translateX(32px); }
+.inter[aria-checked="true"] .inter__piste { border-color: transparent; background: linear-gradient(180deg, rgba(var(--action-rvb), .85), rgba(var(--action-fonce-rvb), .95)); }
+.inter[aria-checked="true"] .inter__icone--jour { color: rgba(255, 255, 255, .6); }
+.inter[aria-checked="true"] .inter__icone--nuit { color: #0E2346; }
+
+.menu-mobile {
+  inset: auto 8px 8px 8px; width: auto; max-width: none; margin: 0; padding: var(--e5);
+  border: 1px solid var(--verre-bord); border-radius: var(--r-grand);
+  background: var(--verre-menu);
+  -webkit-backdrop-filter: blur(28px) saturate(2); backdrop-filter: blur(28px) saturate(2);
+  color: var(--encre);
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, .38);
+}
+.menu-mobile::backdrop { background: var(--voile); }
+.menu-mobile__fermer { display: flex; align-items: center; min-height: 44px; margin-left: auto; padding: 0 var(--e4); border: 1px solid var(--bord); border-radius: var(--r-bouton); background: var(--blanc); color: var(--encre); font: 600 1rem/1.1 var(--police); cursor: pointer; }
+.menu-mobile li a {
+  display: flex; align-items: center; min-height: 56px; border-bottom: 1px solid rgba(var(--encre-rvb), .12);
+  color: var(--encre); font-size: var(--t-accroche); font-weight: 600; text-decoration: none;
+}
+.menu-mobile .bouton { width: 100%; min-height: 56px; margin-top: var(--e5); }
+
+/* ---------- 5. Le premier écran ---------- */
+.accueil { position: relative; margin-top: -76px; padding-top: 76px; overflow: clip; }
+.lueurs { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.lueurs__ciel, .lueurs__eau { position: absolute; border-radius: 50%; will-change: transform; }
+.lueurs__ciel {
+  right: -14vw; top: -26vw; width: 70vw; height: 70vw; max-width: 1040px; max-height: 1040px;
+  background: radial-gradient(closest-side, var(--lumiere) 0%, rgba(var(--lumiere-rvb), .55) 45%, rgba(var(--lumiere-rvb), 0) 100%);
+}
+.lueurs__eau {
+  left: -18vw; bottom: -32vw; width: 64vw; height: 58vw; max-width: 920px; max-height: 840px;
+  background: radial-gradient(closest-side, rgb(var(--eau-rvb)) 0%, rgba(var(--eau-rvb), .6) 45%, rgba(var(--eau-rvb), 0) 100%);
+}
+.lueurs__reseau {
+  position: absolute; right: 0; top: 0; width: min(56vw, 800px); height: 100%; opacity: .62;
+  /* le réseau s'efface à gauche : il ne passe plus derrière le titre, les boutons ni les textes */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 38%, rgba(0, 0, 0, .5) 62%, #000 88%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 38%, rgba(0, 0, 0, .5) 62%, #000 88%);
+}
+
+.accueil__dedans {
+  position: relative; z-index: 1;
+  display: grid; justify-items: center; align-content: center; text-align: center;
+  max-width: 980px; min-height: min(82vh, 760px); margin-inline: auto; padding: var(--e8) var(--e5) var(--e10);
+}
+.titre-page { margin-bottom: var(--e5); color: var(--encre-douce); font-size: var(--t-petit); font-weight: 600; line-height: 1.4; }
+.grand-titre {
+  margin-bottom: var(--e5);
+  font-size: var(--t-slogan); font-weight: 700; line-height: 1.02; letter-spacing: -.03em; text-wrap: balance;
+}
+.grand-titre__question { display: block; }
+.surligne {
+  background-image: linear-gradient(var(--surligne), var(--surligne));
+  background-repeat: no-repeat; background-size: 100% .28em; background-position: 0 90%;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.accroche { max-width: 33em; margin-bottom: var(--e5); font-size: var(--t-accroche); line-height: 1.5; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--e3); margin-bottom: var(--e4); }
+.accueil__dedans .actions { justify-content: center; }
+.reassurance { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e5); color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.5; }
+.accueil__dedans .reassurance { display: block; }
+
+/* la signature : le visage, sur le premier écran, même sur ordinateur */
+.signature { display: flex; align-items: center; gap: var(--e4); margin-top: var(--e7); }
+.signature__photo { width: 64px; height: 64px; flex: none; border-radius: 50%; border: 3px solid var(--blanc); box-shadow: var(--ombre-2); object-fit: cover; }
+.signature__texte { display: grid; gap: 2px; text-align: left; }
+.signature__phrase { font-size: var(--t-petit); font-weight: 600; line-height: 1.35; }
+.signature__nom { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.4; }
+
+/* le petit mot du bas, qui dit qu'il y a une suite */
+.indice {
+  position: absolute; left: 50%; bottom: var(--e6); z-index: 2; transform: translateX(-50%);
+  display: grid; justify-items: center; gap: var(--e2);
+  color: var(--encre-douce); font-size: var(--t-mention); letter-spacing: .08em; text-transform: uppercase;
+}
+.indice span { display: block; width: 1px; height: 44px; background: linear-gradient(var(--encre-douce), transparent); position: relative; overflow: hidden; }
+.indice span::after { content: ""; position: absolute; inset: 0; background: var(--action); animation: fil 2.4s var(--c-trajet) infinite; }
+
+/* ---------- 6. Le motif signature : l'arc de lumière, et le réseau de points ---------- */
+.motif { position: absolute; pointer-events: none; z-index: 0; overflow: visible; }
+.motif path { fill: none; stroke: url(#motif-lumiere); stroke-linecap: round; }
+.motif__large { stroke-width: 60; opacity: .38; filter: blur(20px); }
+.motif__fin { stroke-width: 2; opacity: .8; }
+.motif--bas { left: -10%; bottom: -18%; width: 120%; height: 60%; }
+.motif--haut-droite { right: -14%; top: -20%; width: 70%; height: 70%; transform: rotate(180deg); }
+.motif--contact { left: -20%; bottom: -40%; width: 110%; height: 90%; }
+.motif__ton-pale { stop-color: var(--lumiere); }
+.motif__ton-vif { stop-color: var(--lumiere-vive); }
+.motif__ton-action { stop-color: var(--action); }
+
+.points { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .55;
+  background-image: radial-gradient(rgba(var(--action-rvb), .5) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+}
+
+/* ---------- 7. Le schéma du devis ---------- */
+.schema-zone { position: relative; }
+.schema { position: relative; z-index: 1; }
+.schema__titre { display: flex; align-items: center; gap: var(--e3); margin-bottom: var(--e4); font-size: var(--t-petit); font-weight: 600; line-height: 1.35; }
+.schema__corps { position: relative; }
+.schema__etapes { position: relative; display: grid; gap: var(--e5); }
+.vitre {
+  border: 1px solid var(--verre-bord); border-radius: var(--r-carte);
+  background: var(--verre);
+  -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou);
+  box-shadow: var(--verre-ombre);
+}
+.etape {
+  position: relative;
+  display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: var(--e3); align-items: center;
+  padding: 16px 18px 16px 14px;
+}
+.etape__pic {
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  border: 1.5px solid rgba(var(--encre-rvb), .22); background: var(--verre-plein); color: var(--encre);
+}
+.etape__texte { display: grid; gap: 2px; }
+.etape__texte strong { font-size: 1.0625rem; line-height: 1.3; }
+.etape__texte span { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.45; }
+.schema--joue .etape:not(.etape--accord) .etape__pic { border-color: var(--action); background: var(--lumiere); }
+.etape--accord { border-color: var(--action); box-shadow: var(--halo); }
+.etape--accord .etape__pic { border-color: var(--action); color: var(--action); }
+.etape--accord .etape__texte { min-height: 4.75rem; align-content: start; }
+
+.etape + .etape::before {
+  content: ""; position: absolute; left: 32px; top: calc(-1 * var(--e5) - 7px); z-index: 2;
+  width: 12px; height: calc(var(--e5) + 14px); pointer-events: none;
+  background:
+    radial-gradient(circle 6px at 6px 6px, var(--blanc) 0 38%, var(--action) 46% 90%, transparent 100%),
+    radial-gradient(circle 6px at 6px calc(100% - 6px), var(--blanc) 0 38%, var(--action) 46% 90%, transparent 100%),
+    linear-gradient(var(--action), var(--action)) center / 2px calc(100% - 12px) no-repeat;
+}
+.valider {
+  grid-column: 2; justify-self: start; margin-top: 10px;
+  min-height: 44px; padding: 0 18px;
+  border: 1px solid var(--verre-bord); border-radius: var(--r-bouton);
+  background: linear-gradient(180deg, var(--blanc), var(--lumiere-pale));
+  box-shadow: inset 0 1px 0 var(--blanc), 0 0 0 1px var(--action), 0 8px 18px -12px rgba(var(--action-rvb), .6);
+  color: var(--action-fonce); font: 600 1rem/1.1 var(--police); cursor: pointer;
+}
+.valider:hover { background: var(--lumiere); }
+.pic--valide { display: none; }
+.etape--valide { border-color: var(--action); background: var(--action); color: var(--sur-action); }
+.etape--valide .etape__texte span { color: var(--sur-action-doux); }
+.etape--valide .etape__pic { border-color: var(--sur-action); background: var(--sur-action); color: var(--action-fonce); }
+.etape--valide .pic--attente { display: none; }
+.etape--valide .pic--valide { display: block; }
+.portrait { position: absolute; left: -40px; top: 0; z-index: 2; width: 164px; padding: 8px; border-radius: 22px; }
+.portrait img { width: 148px; height: 185px; border-radius: var(--r-moyen); object-fit: cover; }
+.portrait figcaption { display: grid; gap: 1px; padding: 8px 4px 2px; font-size: var(--t-petit); line-height: 1.3; white-space: nowrap; }
+.portrait figcaption span { color: var(--encre-douce); }
+
+@media (min-width: 921px) {
+  .etape:nth-child(1), .etape:nth-child(2) { min-height: 136px; margin-left: 144px; }
+  .etape:nth-child(3) { margin-left: 28px; }
+  .etape:nth-child(2)::after {
+    content: ""; position: absolute; left: 32px; top: calc(100% - 5px); z-index: 2;
+    width: 12px; height: calc(var(--e5) / 2 + 7px); pointer-events: none;
+    background:
+      radial-gradient(circle 6px at 6px 6px, var(--blanc) 0 38%, var(--action) 46% 90%, transparent 100%),
+      linear-gradient(var(--action), var(--action)) center bottom / 2px calc(100% - 6px) no-repeat;
+  }
+  .etape:nth-child(3)::before {
+    left: 37px; top: calc(-1 * var(--e5) / 2 - 2px); width: 118px; height: calc(var(--e5) / 2 + 2px);
+    border-top: 2px solid var(--action); border-left: 2px solid var(--action); border-top-left-radius: 10px;
+    background: none;
+  }
+  .etape:nth-child(3)::after {
+    content: ""; position: absolute; left: 32px; top: -7px; z-index: 2; width: 12px; height: 12px; pointer-events: none;
+    background: radial-gradient(circle 6px at 6px 6px, var(--blanc) 0 38%, var(--action) 46% 90%, transparent 100%);
+  }
+}
+
+/* ---------- 8. Les parties de la page ---------- */
+.partie { position: relative; padding: var(--e11) 0; }
+.partie--clip { overflow: clip; }
+.partie--bande { background: var(--fond-bande); }
+.partie__dedans { position: relative; z-index: 1; max-width: var(--largeur); margin-inline: auto; padding-inline: var(--e5); }
+.partie__tete { max-width: 46em; margin-bottom: var(--e7); }
+.partie__titre { font-size: var(--t-partie); font-weight: 700; line-height: 1.1; letter-spacing: -.025em; text-wrap: balance; }
+.partie__chapo { margin-top: var(--e4); color: var(--encre-douce); font-size: var(--t-accroche); line-height: 1.5; }
+.partie__suite { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e4) var(--e5); margin-top: var(--e7); }
+.partie__suite p { color: var(--encre-douce); font-size: var(--t-petit); }
+.petit-titre { font-size: var(--t-soustitre); font-weight: 700; line-height: 1.2; letter-spacing: -.015em; }
+.surtitre { margin-bottom: var(--e2); color: var(--action-fonce); font-size: var(--t-petit); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+
+/* le titre de partie, souligné d'un fin trait d'accent qui se dessine à l'arrivée */
+.partie__titre::after {
+  content: ""; display: block; width: 56px; height: 3px; margin-top: var(--e4); border-radius: 3px;
+  background: linear-gradient(90deg, var(--action), transparent);
+  transform-origin: left center;
+}
+
+/* ---------- 9. « Pourquoi utiliser l'IA ? » ---------- */
+.exemple { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--e8); align-items: center; }
+.exemple .schema-zone { padding-left: 40px; }
+.galeres { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4); align-items: start; }
+.galere { padding: var(--e5); transition: border-color var(--d-ouvrir) ease, box-shadow var(--d-ouvrir) ease, transform var(--d-ouvrir) var(--c-arrivee); }
+.galere__dire { font-size: var(--t-accroche); font-weight: 600; line-height: 1.35; }
+.galere__bouton {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--e4); align-items: center;
+  width: 100%; min-height: 44px; padding: 0; border: 0; background: none;
+  color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+.galere__signe { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--bord); color: var(--encre); transition: background var(--d-ouvrir) ease, transform var(--d-ouvrir) var(--c-arrivee); }
+.galere__signe .pic { width: 20px; height: 20px; }
+.galere--ouverte { border-color: var(--action); box-shadow: var(--halo); }
+.galere--ouverte .galere__signe { border-color: var(--action); background: var(--action); color: var(--sur-action); transform: rotate(180deg); }
+.galere__dedans > :first-child { margin-top: var(--e4); padding-top: var(--e4); border-top: 1px solid var(--filet); }
+.galeres[data-pret] .galere__reponse { display: grid; grid-template-rows: 0fr; }
+.galeres[data-pret] .galere--ouverte .galere__reponse { grid-template-rows: 1fr; }
+.galeres[data-pret] .galere__dedans { min-height: 0; overflow: hidden; visibility: hidden; }
+.galeres[data-pret] .galere--ouverte .galere__dedans { visibility: visible; }
+.reponse { display: grid; gap: var(--e3); }
+.reponse div { display: grid; grid-template-columns: 11.5em minmax(0, 1fr); gap: var(--e3); }
+.reponse dt { color: var(--encre-douce); font-size: var(--t-petit); font-weight: 600; line-height: 1.6; }
+.reponse dd { line-height: 1.5; }
+.galere__note { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e4); margin-top: var(--e3); color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.5; }
+.metiers-ligne { max-width: 46em; margin-top: var(--e6); color: var(--encre-douce); }
+
+/* « C'est pour vous / ce n'est pas pour vous » : deux colonnes franches */
+.pour-qui { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4); margin-top: var(--e7); }
+.pour-qui__bloc { display: grid; gap: var(--e3); align-content: start; padding: var(--e5); border-radius: var(--r-carte); border: 1px solid var(--filet); }
+.pour-qui__bloc--oui { background: rgba(var(--lumiere-rvb), .45); border-color: rgba(var(--action-rvb), .35); }
+.pour-qui__bloc h3 { font-size: var(--t-soustitre); font-weight: 700; line-height: 1.2; }
+.pour-qui__bloc p { color: var(--encre-douce); line-height: 1.55; }
+.pour-qui__bloc ul { display: grid; gap: var(--e2); }
+.pour-qui__bloc li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--e2); align-items: start; line-height: 1.5; }
+.pour-qui__bloc .pic { width: 20px; height: 20px; margin-top: 2px; color: var(--action); stroke-width: 2.2; }
+
+/* ---------- 10. La preuve : la fenêtre du tri des mails ---------- */
+.preuve-zone { overflow: clip; }
+.fenetre { position: relative; z-index: 1; padding: 0; overflow: hidden; border-radius: var(--r-grand); }
+.fenetre__barre { display: flex; align-items: center; gap: var(--e3); padding: var(--e3) var(--e4); border-bottom: 1px solid var(--filet); background: rgba(var(--encre-rvb), .05); }
+.fenetre__feux { display: flex; gap: 6px; }
+.fenetre__feux i { width: 10px; height: 10px; border-radius: 50%; background: var(--bord); opacity: .55; }
+.fenetre__nom { color: var(--encre-douce); font-size: var(--t-petit); font-weight: 600; }
+.fenetre__corps { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--e5); padding: var(--e5); min-height: 340px; align-content: start; }
+.fenetre__colonne { display: grid; gap: var(--e3); align-content: start; }
+.fenetre__colonne > p { color: var(--encre-douce); font-size: var(--t-petit); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.mails { display: grid; gap: var(--e2); }
+.mail {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--e3); align-items: center;
+  min-height: 56px; padding: var(--e3) var(--e4);
+  border: 1px solid var(--filet); border-radius: var(--r-moyen); background: var(--blanc);
+  box-shadow: var(--ombre-1);
+  transition: opacity var(--d-trajet) ease, transform var(--d-trajet) var(--c-arrivee), border-color var(--d-trajet) ease;
+}
+.mail__texte { display: grid; gap: 1px; min-width: 0; }
+.mail__texte strong { font-size: var(--t-petit); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mail__texte span { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.3; }
+.mail__geste { padding: 4px 10px; border-radius: var(--r-bouton); background: var(--lumiere); color: var(--encre); font-size: var(--t-petit); font-weight: 600; white-space: nowrap; }
+/* Un mail rangé reste parfaitement lisible : c'est son fond qui change, pas son texte. */
+.mail--parti { transform: translateX(14px); background: var(--fond); box-shadow: none; border-color: transparent; }
+.mail--parti .mail__texte strong { color: var(--encre-douce); }
+.mail--parti .mail__geste { background: var(--action); color: var(--sur-action); }
+.dossiers { display: grid; gap: var(--e2); }
+.dossier {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--e2); align-items: center;
+  min-height: 56px; padding: var(--e3) var(--e4);
+  border: 1.5px dashed var(--bord); border-radius: var(--r-moyen);
+  color: var(--encre); font-size: var(--t-petit); font-weight: 600;
+  transition: transform var(--d-trajet) var(--c-arrivee);
+}
+.dossier__compte { color: var(--encre-douce); font-weight: 500; font-variant-numeric: tabular-nums; }
+.dossier--rempli { border-style: solid; border-color: rgba(var(--action-rvb), .5); background: rgba(var(--lumiere-rvb), .5); }
+.dossier--dernier { border-color: var(--action); background: var(--action); color: var(--sur-action); transform: scale(1.03); }
+.dossier--dernier .dossier__compte { color: var(--sur-action-doux); }
+.preuve__pied { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--e3); padding: var(--e4) var(--e5); border-top: 1px solid var(--filet); }
+.preuve__legende { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.5; }
+.preuve__legende strong { color: var(--encre); }
+.preuve__citation { position: relative; z-index: 1; display: grid; gap: var(--e4); max-width: 44em; margin: var(--e8) auto 0; text-align: center; justify-items: center; }
+.preuve__citation p { font-family: var(--police-lecture); font-size: clamp(1.375rem, 1rem + 1.2vw, 1.875rem); font-style: italic; line-height: 1.45; text-wrap: balance; }
+.preuve__citation footer { color: var(--encre-douce); font-size: var(--t-petit); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.preuve__citation::before { content: "\201C"; font-family: var(--police-lecture); font-size: 5rem; line-height: .6; color: var(--action); opacity: .35; }
+
+/* ---------- 11. Pourquoi passer par moi : la conversation ---------- */
+.discussion { max-width: 760px; padding: var(--e5); }
+.discussion__tete { display: flex; align-items: center; gap: var(--e3); padding-bottom: var(--e4); margin-bottom: var(--e5); border-bottom: 1px solid var(--filet); }
+.discussion__tete img { width: 48px; height: 48px; border-radius: 50%; }
+.discussion__tete p { display: grid; line-height: 1.3; }
+.discussion__tete span { color: var(--encre-douce); font-size: var(--t-petit); }
+.discussion__fil, .echange { display: grid; gap: var(--e3); }
+.discussion__fil { gap: var(--e4); }
+.message { max-width: 34em; padding: var(--e3) var(--e4); border-radius: var(--r-carte); line-height: 1.5; }
+.message--lui { justify-self: start; display: grid; gap: var(--e2); border-bottom-left-radius: var(--r-petit); background: var(--blanc); box-shadow: 0 0 0 1px var(--filet), var(--ombre-1); }
+.message--vous { justify-self: end; border-bottom-right-radius: var(--r-petit); background: var(--action); color: var(--sur-action); font-weight: 600; }
+.gestes { display: grid; gap: var(--e2); }
+.gestes li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--e2); align-items: start; font-size: var(--t-petit); line-height: 1.5; }
+.gestes .pic { width: 20px; height: 20px; margin-top: 1px; color: var(--action); stroke-width: 2; }
+.discussion__fin { display: flex; flex-wrap: wrap; gap: var(--e3); margin-top: var(--e5); }
+.discussion[data-pret] .discussion__fin:not(.discussion__fin--visible) { display: none; }
+.discussion { scroll-margin-top: 120px; }
+.discussion__choix { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--e2); margin-top: var(--e5); padding-top: var(--e4); border-top: 1px solid var(--filet); }
+.discussion__titre { flex-basis: 100%; color: var(--encre-douce); font-size: var(--t-petit); font-weight: 600; text-align: right; }
+.choix {
+  min-height: 44px; padding: 0 var(--e4);
+  border: 1px solid var(--action); border-radius: var(--r-bouton); background: var(--blanc);
+  color: var(--action-fonce); font: 600 1rem/1.2 var(--police); cursor: pointer;
+  transition: background var(--d-reponse) ease, color var(--d-reponse) ease, transform var(--d-reponse) var(--c-arrivee);
+}
+.choix:hover { background: var(--action); color: var(--sur-action); transform: translateY(-1px); }
+.choix--discret { border-color: var(--bord); color: var(--encre-douce); }
+.choix--discret:hover { border-color: var(--encre); background: var(--blanc); color: var(--encre); }
+.discussion[data-pret] .echange[data-echange]:not(.echange--pose) { display: none; }
+/* les trois points qui montrent que la réponse arrive */
+.ecrit { display: inline-flex; gap: 5px; padding: var(--e3) var(--e4); border-radius: var(--r-carte); border-bottom-left-radius: var(--r-petit); background: var(--blanc); box-shadow: 0 0 0 1px var(--filet), var(--ombre-1); }
+.ecrit i { width: 7px; height: 7px; border-radius: 50%; background: var(--encre-douce); animation: ecrit 1.1s ease-in-out infinite; }
+.ecrit i:nth-child(2) { animation-delay: .15s; }
+.ecrit i:nth-child(3) { animation-delay: .3s; }
+
+/* ---------- 12. À propos ---------- */
+.qui { display: grid; grid-template-columns: 264px minmax(0, 1fr); gap: var(--e8); align-items: center; }
+.qui__photo { padding: 8px; border-radius: var(--r-grand); }
+.qui__photo img { width: 100%; height: auto; border-radius: var(--r-carte); }
+.qui__texte { display: grid; gap: var(--e4); max-width: 36em; }
+.qui__texte p { font-size: var(--t-accroche); line-height: 1.55; }
+
+/* ---------- 13. Les prix ---------- */
+.offres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e4); align-items: stretch; }
+.offre { display: grid; grid-template-rows: auto auto 1fr auto; gap: var(--e3); padding: var(--e6) var(--e5) var(--e5); }
+.offre--note { grid-template-rows: auto 1fr; align-self: start; border: 1px solid var(--verre-bord); border-radius: var(--r-carte); background: linear-gradient(135deg, rgba(var(--lumiere-rvb), .6), rgba(var(--lumiere-rvb), .25)); -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou); box-shadow: var(--verre-ombre); }
+.offre__prix { font-size: var(--t-prix); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; }
+.offre__prix small { color: var(--encre-douce); font-size: var(--t-texte); font-weight: 500; letter-spacing: 0; }
+.offre__texte { display: grid; gap: var(--e2); align-content: start; color: var(--encre-douce); font-size: 1.0625rem; line-height: 1.5; }
+.offre .bouton { margin-top: var(--e3); }
+
+/* ---------- 14. « Comment ça se passe ? » : une section qui s'épingle et file de côté ---------- */
+.coulisse { position: relative; padding: var(--e11) var(--e5); }
+.coulisse:not(.coulisse--actif) .coulisse__ecran { max-width: var(--largeur); margin-inline: auto; }
+.coulisse__ecran { position: relative; }
+.coulisse__tete { margin-bottom: var(--e7); }
+.coulisse--actif { padding: 0; }
+.coulisse--actif .coulisse__tete { margin-bottom: var(--e6); }
+.coulisse__piste { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e5); }
+.temps { display: grid; gap: var(--e3); align-content: start; padding: var(--e6) var(--e5); border-radius: var(--r-carte); border: 1px solid var(--filet); background: var(--verre); -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou); }
+.temps__num { font-family: var(--police-lecture); font-size: clamp(3rem, 2rem + 3vw, 4.5rem); font-weight: 700; line-height: .9; color: var(--action); opacity: .55; }
+.temps h3 { font-size: var(--t-accroche); font-weight: 700; line-height: 1.25; }
+.temps p { color: var(--encre-douce); font-size: 1.0625rem; line-height: 1.5; }
+.temps--fin { border-color: var(--action); box-shadow: var(--halo); }
+.coulisse__compte { display: none; }
+
+/* Avec le programme, sur ordinateur : l'écran se fixe et la piste glisse. */
+.coulisse--actif { height: var(--course, 200vh); }
+.coulisse--actif .coulisse__ecran { position: sticky; top: 0; display: flex; align-items: stretch; height: 100vh; overflow: hidden; }
+.coulisse--actif .coulisse__piste {
+  display: flex; gap: var(--e6); width: max-content; margin: 0;
+  padding-inline: max(var(--e5), calc((100vw - var(--largeur)) / 2 + var(--e5)));
+  will-change: transform;
+}
+.coulisse--actif .temps { flex: 0 0 30vw; min-height: 320px; padding: var(--e7) var(--e6); }
+.coulisse--actif .temps__num { font-size: 5rem; }
+.coulisse--actif .coulisse__compte {
+  display: block; position: absolute; left: 50%; bottom: var(--e7); transform: translateX(-50%);
+  color: var(--encre-douce); font-size: var(--t-mention); font-weight: 600; letter-spacing: .12em;
+}
+.coulisse--actif .coulisse__tete { width: 100%; max-width: none; margin: 0 0 var(--e6); padding-inline: max(var(--e5), calc((100vw - var(--largeur)) / 2 + var(--e5))); }
+.coulisse--actif .coulisse__ecran { flex-direction: column; justify-content: center; }
+
+/* ---------- 15. La formation ---------- */
+.formation { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--e8); align-items: center; }
+.formation__points { display: grid; gap: var(--e2); margin-top: var(--e5); }
+.formation__points li { display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: var(--e3); align-items: baseline; font-weight: 500; }
+.formation__points li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--action); transform: translateY(-2px); }
+
+/* ---------- 16. Les questions ---------- */
+.comparaisons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4); }
+.comparaison { display: grid; gap: var(--e3); align-content: start; padding: var(--e5); }
+.comparaison p { color: var(--encre-douce); line-height: 1.55; }
+.questions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--e7); margin-top: var(--e7); align-items: start; }
+.question { border-top: 1px solid var(--filet); }
+.question summary {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--e4); align-items: center;
+  min-height: 64px; padding: var(--e3) 0; font-size: var(--t-accroche); font-weight: 600; line-height: 1.35;
+  cursor: pointer; list-style: none;
+}
+.question summary::-webkit-details-marker { display: none; }
+.question summary::after { content: ""; width: 12px; height: 12px; margin-right: 6px; border-right: 2px solid var(--encre); border-bottom: 2px solid var(--encre); transform: rotate(45deg) translate(-3px, -3px); transition: transform var(--d-ouvrir) var(--c-arrivee); }
+.question[open] summary::after { transform: rotate(-135deg) translate(-3px, -3px); }
+.question p { padding: 0 var(--e7) var(--e5) 0; color: var(--encre-douce); line-height: 1.6; }
+
+/* ---------- 17. Le contact : une île arrondie et foncée ---------- */
+.contact {
+  --k-fond: var(--nuit);
+  --k-texte: var(--sur-encre); --k-doux: var(--sur-encre-doux); --k-lien: var(--sur-encre); --k-survol: var(--lumiere-vive);
+  --k-carte: rgba(255, 255, 255, .08); --k-carte-bord: rgba(255, 255, 255, .22);
+  --k-trait: rgba(255, 255, 255, .5); --k-erreur: var(--alerte-claire); --k-contour: var(--lumiere-vive);
+  --k-champ-bord: transparent; --k-lueur: rgba(var(--action-clair-rvb), .4); --k-pastille: rgba(255, 255, 255, .12);
+  position: relative; overflow: clip; margin: var(--e7) var(--e4); padding: var(--e10) 0; border-radius: var(--r-grand);
+  background: var(--k-fond); color: var(--k-texte);
+  transition: background .5s ease;
+}
+.contact__lueur { position: absolute; right: -20vw; top: -30vw; width: 70vw; height: 70vw; max-width: 1000px; max-height: 1000px; border-radius: 50%; background: radial-gradient(closest-side, var(--k-lueur), transparent); pointer-events: none; }
+.contact .partie__titre { color: var(--k-texte); }
+.contact .surtitre { color: var(--k-doux); }
+.contact .partie__titre::after { background: linear-gradient(90deg, var(--lumiere-vive), transparent); }
+.contact .partie__chapo { color: var(--k-doux); }
+.contact a { color: var(--k-lien); }
+.contact :focus-visible { outline-color: var(--k-contour); }
+.contact__tete { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--e5); align-items: center; max-width: 52em; margin-bottom: var(--e7); }
+.contact__photo { width: 96px; height: 96px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: var(--ombre-2); object-fit: cover; }
+.moyens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4); align-items: start; }
+.moyens__colonne { display: grid; gap: var(--e4); }
+.moyen {
+  display: grid; gap: var(--e4); align-content: start; padding: var(--e6) var(--e5);
+  border: 1px solid var(--k-carte-bord); border-radius: var(--r-carte);
+  background: var(--k-carte);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22);
+}
+.moyen p { color: var(--k-doux); line-height: 1.55; }
+.moyen .petit-titre { color: var(--k-texte); }
+/* Sur l'île foncée, le bouton reste clair dans les deux thèmes : il ne suit pas les jetons du thème. */
+.contact .bouton { border-color: #FFFFFF; background: linear-gradient(180deg, #FFFFFF, #E8F0F8); box-shadow: inset 0 1px 0 #FFFFFF, 0 14px 30px -14px rgba(0, 0, 0, .6); color: #0E2346; }
+.contact .bouton::before { display: none; }
+.contact .bouton:hover { background: #FFFFFF; color: #0E2346; }
+.contact .maquette-note { padding: var(--e3) var(--e4); border: 1px dashed var(--k-trait); border-radius: var(--r-moyen); color: var(--k-texte); font-size: var(--t-petit); line-height: 1.5; }
+.contact .numero { display: inline-flex; align-items: center; min-height: 48px; justify-self: start; color: var(--k-texte); font-size: var(--t-prix); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+.contact .numero:hover { color: var(--k-survol); }
+
+.formulaire { display: grid; gap: var(--e4); }
+.champ { display: grid; gap: 6px; }
+.champ label { font-size: 1rem; font-weight: 600; }
+.champ input {
+  width: 100%; min-height: 52px; padding: 0 var(--e4);
+  border: 1.5px solid var(--k-champ-bord); border-radius: var(--r-moyen);
+  background: #FFFFFF; color: #0E2346; font: 400 1.0625rem/1.2 var(--police);
+}
+.champ input:focus-visible { outline: 3px solid var(--k-contour); outline-offset: 2px; }
+.contact .champ__aide { color: var(--k-doux); font-size: var(--t-petit); line-height: 1.45; }
+.contact .champ__erreur { color: var(--k-erreur); font-size: var(--t-petit); font-weight: 600; line-height: 1.45; }
+.deux-champs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4); }
+.contact .sujet { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e2) var(--e3); padding: var(--e3) var(--e4); border-radius: var(--r-moyen); background: var(--k-pastille); color: var(--k-texte); font-size: var(--t-petit); line-height: 1.45; }
+.sujet button { min-height: 44px; padding: 0 var(--e3); border: 1px solid var(--k-trait); border-radius: var(--r-bouton); background: none; color: var(--k-texte); font: 600 var(--t-petit)/1 var(--police); cursor: pointer; }
+.contact .formulaire__legal { color: var(--k-doux); font-size: var(--t-petit); line-height: 1.5; }
+.confirmation { display: grid; gap: var(--e3); padding: var(--e5); border-radius: var(--r-moyen); background: #FFFFFF; color: #0E2346; }
+.contact .confirmation p { color: #46536A; }
+.confirmation button { justify-self: start; min-height: 44px; padding: 0 var(--e4); border: 1px solid var(--bord); border-radius: var(--r-bouton); background: #FFFFFF; color: #0E2346; font: 600 1rem/1.1 var(--police); cursor: pointer; }
+.contact .confirmation .petit-titre { color: #0E2346; }
+
+/* ---------- 18. Le bas de page et la barre du téléphone ---------- */
+.pied { padding: var(--e7) 0 var(--e7); }
+.pied__dedans { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr); gap: var(--e7); max-width: var(--largeur); margin-inline: auto; padding-inline: var(--e5); }
+.pied p, .pied li { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.6; }
+.pied h2 { margin-bottom: var(--e3); font-size: var(--t-petit); font-weight: 700; }
+.pied nav a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; color: var(--encre-douce); }
+.pied nav a:hover { color: var(--encre); }
+.pied__marque { margin-bottom: var(--e4); }
+.pied__fin { width: calc(100% - 2 * var(--e5)); max-width: calc(var(--largeur) - 2 * var(--e5)); margin: var(--e7) auto 0; padding-top: var(--e5); border-top: 1px solid var(--filet); color: var(--encre-douce); font-size: var(--t-petit); }
+.barre { display: none; }
+
+/* ---------- 18 bis. Les pages légales ---------- */
+.entete__actions--fin { margin-left: auto; }
+.page-legale { max-width: 780px; margin-inline: auto; padding: var(--e10) var(--e5) var(--e11); }
+.page-legale__retour { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: var(--e5); font-size: var(--t-petit); font-weight: 600; }
+.page-legale h1 { font-size: clamp(2rem, 1.2rem + 2.4vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -.03em; }
+.page-legale h1 + p { margin-top: var(--e4); color: var(--encre-douce); font-size: var(--t-accroche); line-height: 1.5; }
+.page-legale h2 { margin-top: var(--e8); font-size: var(--t-soustitre); font-weight: 700; line-height: 1.25; }
+.page-legale h2 + p, .page-legale h2 + ul { margin-top: var(--e3); }
+.page-legale p, .page-legale li { font-size: var(--t-texte); line-height: 1.7; }
+.page-legale p + p { margin-top: var(--e3); }
+.page-legale ul { margin-top: var(--e3); display: grid; gap: var(--e2); }
+.page-legale li { position: relative; padding-left: 1.15em; }
+.page-legale li::before { content: "—"; position: absolute; left: 0; color: var(--action); }
+.page-legale__maj { margin-top: var(--e10); padding-top: var(--e5); border-top: 1px solid var(--filet); color: var(--encre-douce); font-size: var(--t-petit); }
+.bandeau-maquette { display: grid; gap: var(--e2); margin: var(--e6) 0 var(--e8); padding: var(--e5); border: 1px dashed var(--bord); border-radius: var(--r-moyen); background: rgba(var(--lumiere-rvb), .35); }
+.bandeau-maquette strong { font-size: var(--t-petit); }
+.bandeau-maquette p { color: var(--encre-douce); font-size: var(--t-petit); line-height: 1.55; }
+.a-completer { background: #FFF0BE; color: #4A3500; padding: 1px 5px; border-radius: 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.pied--simple .pied__dedans { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--e4); }
+.pied--simple p, .pied--simple a { font-size: var(--t-petit); }
+
+/* ---------- 19. Le curseur, la barre de progression ---------- */
+.curseur { display: none; position: fixed; left: 0; top: 0; z-index: 60; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 1.5px solid rgba(var(--action-rvb), .55); pointer-events: none; opacity: 0; transition: opacity var(--d-ouvrir) ease, width var(--d-ouvrir) var(--c-arrivee), height var(--d-ouvrir) var(--c-arrivee), margin var(--d-ouvrir) var(--c-arrivee), background-color var(--d-ouvrir) ease; will-change: transform; }
+@media (hover: hover) and (pointer: fine) { .curseur { display: block; } }
+.curseur--visible { opacity: 1; }
+.curseur--survol { width: 54px; height: 54px; margin: -27px 0 0 -27px; background: rgba(var(--action-rvb), .12); border-color: rgba(var(--action-rvb), .8); }
+.curseur--clic { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
+.progres { position: fixed; left: 0; top: 0; z-index: 50; width: 100%; height: 2px; transform: scaleX(0); transform-origin: left center; background: linear-gradient(90deg, var(--lumiere-vive), var(--action)); pointer-events: none; }
+
+/* ---------- 20. Le mouvement ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* 1. Les apparitions au défilement. Sans programme, rien n'est caché : la règle ne s'applique
+        que si le navigateur sait exécuter du programme. */
+  /* Ces règles ne s'appliquent que si le programme a posé la classe « anime » sur la page.
+     S'il ne s'exécute pas, rien n'est caché. */
+  .anime [data-reveal] { opacity: 0; transform: translateY(26px); filter: blur(6px); }
+  .anime [data-reveal].est-visible {
+    opacity: 1; transform: none; filter: none;
+    transition: opacity .9s var(--c-arrivee) var(--retard, 0s), transform .9s var(--c-arrivee) var(--retard, 0s), filter .9s var(--c-arrivee) var(--retard, 0s);
+  }
+  .anime [data-reveal="monte"] { transform: translateY(40px) scale(.98); }
+  .anime [data-reveal="gauche"] { transform: translateX(-24px); }
+  .anime [data-reveal="droite"] { transform: translateX(24px); }
+  .anime [data-reveal="zoom"] { transform: scale(.94); }
+  /* le trait sous les titres se dessine */
+  .anime .partie__titre[data-reveal]::after, .anime [data-reveal] .partie__titre::after { transform: scaleX(0); transition: transform 1s var(--c-arrivee) .15s; }
+  .anime .partie__titre.est-visible::after, .anime .est-visible .partie__titre::after { transform: scaleX(1); }
+  /* le titre du premier écran arrive mot à mot */
+  .mot { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .14em; margin-bottom: -.14em; }
+  .mot__dedans { display: inline-block; transform: translateY(115%); }
+  .accueil--pret .mot__dedans { transform: none; transition: transform 1.05s var(--c-arrivee) var(--retard, 0s); }
+
+  /* 2. Les boutons qui suivent la souris, les cartes qui s'inclinent */
+  .bouton, .theme, .choix, .valider { transition: background var(--d-ouvrir) var(--c-arrivee), box-shadow var(--d-ouvrir) var(--c-arrivee), transform var(--d-reponse) var(--c-arrivee), color var(--d-ouvrir) var(--c-arrivee); }
+  .bouton:active, .valider:active { transform: translateY(1px) scale(.985); }
+  .bouton:hover::after { opacity: 1; transform: translateX(60%); transition: transform .75s var(--c-trajet), opacity .2s ease; }
+  .galere:hover, .comparaison:hover, .offre:hover, .temps:hover { transform: translateY(-4px); }
+  .galere, .comparaison, .offre, .temps { transition: transform .45s var(--c-arrivee), border-color .3s ease, box-shadow .3s ease; }
+  [data-incline] { transform-style: preserve-3d; will-change: transform; }
+
+  /* 3. Le schéma : les étapes s'allument l'une après l'autre */
+  .etape, .etape__pic { transition: background-color var(--d-ouvrir) var(--c-arrivee), border-color var(--d-ouvrir) var(--c-arrivee), color var(--d-ouvrir) var(--c-arrivee); }
+  .schema--joue .etape .etape__pic { transition-duration: var(--d-derouler); }
+  .schema--joue .etape:nth-child(1) .etape__pic { transition-delay: 1.2s; }
+  .schema--joue .etape:nth-child(2) .etape__pic { transition-delay: 2.6s; }
+
+  /* 4. Les messages de la conversation */
+  .echange--arrive .message { animation: arriver .7s var(--c-arrivee) both; }
+  .echange--arrive .message--lui { animation-delay: .25s; }
+  @keyframes arriver { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes ecrit { 0%, 60%, 100% { opacity: .35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+  @keyframes fil { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(100%); } }
+
+  /* 5. Le déroulement d'une carte-problème */
+  .galeres[data-pret] .galere__reponse { transition: grid-template-rows var(--d-derouler) var(--c-trajet); }
+  .galeres[data-pret] .galere__dedans { transition: visibility 0s var(--d-derouler); }
+  .galeres[data-pret] .galere--ouverte .galere__dedans { transition-delay: 0s; }
+  .lien-fleche::after { transition: transform var(--d-reponse) var(--c-arrivee); }
+  .lien-fleche:hover::after { transform: translateX(3px); }
+  /* la réponse d'une question arrive en fondu */
+  .question[open] p { animation: ouvrir .4s var(--c-arrivee) both; }
+  @keyframes ouvrir { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+}
+
+/* Si l'on a demandé moins de mouvement : tout est à sa place, rien n'attend. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .mot { overflow: visible; }
+  .mot__dedans { transform: none !important; }
+  .curseur, .progres { display: none; }
+}
+
+/* ---------- 21. Si le navigateur ne sait pas faire le flou, ou si l'on a demandé moins de transparence ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .entete__dedans, .vitre, .menu-mobile, .barre[data-visible], .temps { background: var(--verre-plein); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .entete__dedans, .vitre, .menu-mobile, .barre[data-visible], .temps { background: var(--blanc); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  body::before { display: none; }
+  .bouton { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media print {
+  .entete, .barre, .lueurs, .motif, .points, .menu-mobile, .curseur, .progres, .indice { display: none !important; }
+  body::before, body::after { display: none; }
+  .contact { background: none; color: var(--encre); }
+}
+
+/* ---------- 22. Écrans moyens ---------- */
+@media (min-width: 921px) and (max-height: 760px) {
+  .accueil__dedans { padding-top: var(--e6); padding-bottom: var(--e8); }
+  .grand-titre { font-size: clamp(2.25rem, 1rem + 3vw, 3.25rem); margin-bottom: var(--e4); }
+  .accroche { margin-bottom: var(--e4); }
+  .signature { margin-top: var(--e5); }
+}
+@media (max-width: 1400px) {
+  .telephone span { display: none; }
+  .telephone { min-width: 44px; justify-content: center; }
+  .entete__dedans { gap: var(--e4); }
+}
+@media (max-width: 1060px) {
+  .menu { display: none; }
+  .entete__actions { margin-left: auto; }
+  .entete__menu {
+    display: flex; align-items: center; gap: var(--e2); min-height: 44px; padding: 0 var(--e4);
+    border: 0; border-radius: var(--r-bouton); background: var(--puce-fond);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), 0 0 0 1px var(--filet);
+    color: var(--puce-texte); font: 600 1rem/1.1 var(--police); cursor: pointer;
+  }
+}
+
+/* ---------- 23. Téléphone et tablette ---------- */
+@media (max-width: 920px) {
+  body { font-size: 1.0625rem; }
+  .progres { display: none; }  /* la barre de lecture reste sur ordinateur : sur téléphone, un seul élément fixe, la barre du bas */
+  [id] { scroll-margin-top: var(--e5); }
+  .entete { position: relative; top: auto; margin: 8px 8px 0; padding-inline: 0; }
+  .entete__dedans { gap: var(--e2); padding: 6px var(--e3); border-radius: var(--r-grand); }
+  .telephone, .entete__actions .bouton { display: none; }
+  .entete__actions { gap: 2px; }
+  .entete__appeler, .entete__menu {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+    min-width: 56px; min-height: 52px; padding: 0 6px; border: 0; border-radius: var(--r-moyen);
+    background: none; box-shadow: none;
+    color: var(--encre); font: 600 var(--t-petit)/1.2 var(--police); text-decoration: none; cursor: pointer;
+  }
+  .marque__nom { font-size: 1.0625rem; white-space: normal; }
+  .marque { gap: var(--e2); }
+  .marque__logo { height: 32px; }
+  .marque__nom { font-size: 1rem; }
+  .entete__appeler span { display: none; }
+  .accueil { margin-top: -80px; padding-top: 80px; }
+  .accueil__dedans { min-height: 0; padding: var(--e7) var(--e4) var(--e9); }
+  .grand-titre { font-size: 2.375rem; margin-bottom: var(--e4); }
+  .accroche { font-size: var(--t-texte); margin-bottom: var(--e4); }
+  .actions .bouton { width: 100%; min-height: 56px; }
+  .reassurance { display: grid; gap: 0; }
+  .signature { margin-top: var(--e6); }
+  .indice { display: none; }
+  .lueurs__reseau { display: none; }
+  .portrait { display: none; }
+  .exemple { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
+  .exemple .schema-zone { padding-left: 0; }
+
+  .page-legale { padding: var(--e8) var(--e4) var(--e9); }
+  .page-legale h2 { margin-top: var(--e7); }
+  .partie { padding: var(--e8) 0; }
+  .partie__dedans, .pied__dedans { padding-inline: var(--e4); }
+  .partie__tete { margin-bottom: var(--e6); }
+  .partie__titre { font-size: var(--t-prix); }
+  .partie__chapo { font-size: var(--t-texte); }
+  .offre--note { padding: var(--e5); }
+  .formation { gap: var(--e6); }
+  .galere { padding: var(--e4); }
+  .galere__dire { font-size: var(--t-texte); }
+  .reponse div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .galeres, .comparaisons, .questions, .offres, .moyens, .deux-champs, .formation, .pour-qui, .fenetre__corps { grid-template-columns: minmax(0, 1fr); }
+  .pied__fin { width: calc(100% - 2 * var(--e4)); }
+  .qui { grid-template-columns: minmax(0, 1fr); gap: var(--e5); }
+  .qui__photo { max-width: 220px; }
+  .qui__texte p { font-size: var(--t-texte); }
+  .coulisse__piste { grid-template-columns: minmax(0, 1fr); gap: var(--e4); }
+  .temps { padding: var(--e5) var(--e4); }
+  .temps__num { font-size: 2.5rem; }
+  .questions { margin-top: var(--e7); }
+  .question summary { min-height: 60px; font-size: var(--t-texte); }
+  .question p { padding-right: 0; }
+  .contact { margin: var(--e6) var(--e2); padding: var(--e8) 0; border-radius: var(--r-carte); }
+  .contact__tete { grid-template-columns: minmax(0, 1fr); }
+  .contact__photo { width: 80px; height: 80px; }
+  .moyen { padding: var(--e5) var(--e4); }
+  .contact .numero { font-size: 1.75rem; }
+  .pied__dedans { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
+  .pied { padding-bottom: 112px; }
+  .discussion { padding: var(--e4); }
+  .fenetre__barre { padding: var(--e2) var(--e3); }
+  .preuve__citation { margin-top: var(--e6); }
+
+  /* La barre du bas : le seul élément fixe sur téléphone. */
+  .barre[data-visible] {
+    position: fixed; left: 8px; right: 8px; bottom: 8px; z-index: 40; border-radius: var(--r-grand);
+    display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: var(--e2);
+    padding: var(--e2) var(--e3) calc(var(--e2) + env(safe-area-inset-bottom, 0px));
+    border: 1px solid var(--verre-bord);
+    background: var(--verre-menu);
+    -webkit-backdrop-filter: blur(16px) saturate(2); backdrop-filter: blur(16px) saturate(2);
+    box-shadow: var(--verre-ombre);
+  }
+  .barre .bouton { min-height: 52px; padding: 0 var(--e3); font-size: 1rem; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (max-width: 520px) {
+  .barre .bouton__long { display: none; }
+}
+@media (max-width: 380px) {
+  .barre .bouton__court { display: none; }
+  .marque__logo { height: 28px; }
+  .entete__appeler, .entete__menu { min-width: 50px; padding: 0 2px; }
+  .entete__dedans { padding-inline: var(--e2); }
+}
+@media (min-width: 521px) {
+  .barre .bouton__court { display: none; }
+}
+@media (min-width: 381px) {
+  .barre .bouton__mini { display: none; }
+}
+
+/* La jauge de lecture de la section épinglée */
+@media (max-width: 920px) {
+  .coulisse__compte { display: none !important; }
+}

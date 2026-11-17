@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prendre rendez-vous — Benjamin Huteau, consultant IA</title>
+<meta name="description" content="Un appel gratuit de 30 minutes, par téléphone ou en visio. Vous dites ce qui vous prend du temps.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6F9FC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08111D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Benjamin Huteau — Consultant IA">
+<meta property="og:title" content="Prendre rendez-vous — Benjamin Huteau, consultant IA">
+<meta property="og:description" content="Un appel gratuit de 30 minutes, par téléphone ou en visio. Vous dites ce qui vous prend du temps.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/icone-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+<link rel="preload" href="assets/polices/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Benjamin Huteau",
+  "jobTitle": "Consultant IA",
+  "description": "Automatisation de tâches et formation à l'IA pour les TPE et PME, partout en France, à distance.",
+  "knowsLanguage": "fr",
+  "homeLocation": { "@type": "Place", "name": "Près d'Angers, France" }
+}
+</script>
+</head>
+
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<svg class="cache-visuel" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="motif-lumiere" x1="0" y1="1" x2="1" y2="0">
+      <stop class="motif__ton-pale" offset="0"/>
+      <stop class="motif__ton-vif" offset=".55"/>
+      <stop class="motif__ton-action" offset="1"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="curseur" aria-hidden="true" data-curseur></div>
+<div class="progres" aria-hidden="true" data-progres></div>
+
+<header class="entete">
+  <div class="entete__dedans">
+    <a class="marque" href="index.html">
+      <img class="marque__logo" src="assets/img/logo-bh.webp" width="251" height="160" alt="">
+      <span class="marque__texte">
+        <span class="marque__nom">Benjamin Huteau</span>
+        <span class="marque__metier">Consultant IA</span>
+      </span>
+    </a>
+    <nav class="menu" aria-label="Menu principal">
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="entete__actions">
+      <a class="telephone" href="tel:+33199000000" aria-label="Appeler le 01 99 00 00 00">
+        <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h2.9l1.5 4.2-2 1.4a12.5 12.5 0 0 0 6.4 6.4l1.4-2 4.2 1.5v2.9a2.6 2.6 0 0 1-2.6 2.6A15.4 15.4 0 0 1 4 5.6 2.6 2.6 0 0 1 6.6 3z"/></svg>
+        <span>01&nbsp;99&nbsp;00&nbsp;00&nbsp;00</span>
+      </a>
+      <a class="bouton bouton--petit" href="contact.html" data-magnetique>Réserver un appel de 30&nbsp;min</a>
+      <button class="inter" type="button" data-theme-bouton role="switch" aria-checked="false" aria-label="Mode sombre">
+        <span class="inter__piste" aria-hidden="true">
+          <span class="inter__icone inter__icone--jour"><svg class="pic" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/></svg></span>
+          <span class="inter__icone inter__icone--nuit"><svg class="pic" viewBox="0 0 24 24" focusable="false"><path d="M20 14.4A8.4 8.4 0 0 1 9.6 4a8.4 8.4 0 1 0 10.4 10.4z"/></svg></span>
+          <span class="inter__curseur"></span>
+        </span>
+      </button>
+      <a class="entete__appeler" href="tel:+33199000000" aria-label="Appeler le 01 99 00 00 00">
+        <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h2.9l1.5 4.2-2 1.4a12.5 12.5 0 0 0 6.4 6.4l1.4-2 4.2 1.5v2.9a2.6 2.6 0 0 1-2.6 2.6A15.4 15.4 0 0 1 4 5.6 2.6 2.6 0 0 1 6.6 3z"/></svg>
+        <span>Appeler</span>
+      </a>
+      <button class="entete__menu" type="button" popovertarget="menu-mobile">
+        <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="menu-mobile" id="menu-mobile" popover aria-label="Menu">
+  <button class="menu-mobile__fermer" type="button" popovertarget="menu-mobile" popovertargetaction="hide">Fermer</button>
+  <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+  </ul>
+  <a class="bouton" href="contact.html">Réserver un appel de 30&nbsp;min</a>
+</nav>
+
+<main id="contenu">
+
+<section class="contact" id="contact" aria-labelledby="titre-contact" data-contact>
+    <span class="contact__lueur" aria-hidden="true"></span>
+    <svg class="motif motif--contact" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="motif__large" d="M-40 420 C 140 240, 380 300, 640 40"/>
+      <path class="motif__fin" d="M-40 420 C 140 240, 380 300, 640 40"/>
+    </svg>
+    <div class="partie__dedans">
+      <div class="contact__tete" data-reveal="monte">
+        <img class="contact__photo" src="assets/img/benjamin-rond.webp" width="216" height="216" alt="Benjamin Huteau" loading="lazy">
+        <div>
+          <p class="surtitre">Contact</p>
+          <h1 class="partie__titre" id="titre-contact">On en parle 30&nbsp;minutes&nbsp;?</h1>
+          <p class="partie__chapo">Vous dites ce qui vous prend du temps. On vous montre par où commencer.</p>
+        </div>
+      </div>
+
+      <div class="moyens" data-reveal-groupe>
+        <div class="moyens__colonne">
+        <div class="moyen" data-reveal="monte">
+          <h2 class="petit-titre">Réserver un appel de 30&nbsp;min</h2>
+          <p>Gratuit, sans engagement. Par téléphone ou en visio.</p>
+          <p class="maquette-note">Maquette&nbsp;: ici s’ouvrira l’agenda en ligne, à la mise en ligne du site. En attendant, laissez votre numéro ou appelez.</p>
+        </div>
+        <div class="moyen" data-reveal="monte">
+          <h2 class="petit-titre">Appeler</h2>
+          <a class="numero" href="tel:+33199000000">01&nbsp;99&nbsp;00&nbsp;00&nbsp;00</a>
+          <p class="maquette-note">Maquette&nbsp;: numéro d’exemple, à remplacer à la mise en ligne.</p>
+        </div>
+        </div>
+
+        <div class="moyen" id="rappel" data-reveal="monte">
+          <h2 class="petit-titre">Être rappelé</h2>
+          <form class="formulaire" method="post" action="#rappel" data-formulaire novalidate>
+            <p class="sujet" data-sujet hidden>
+              <span>Votre sujet&nbsp;: <strong data-sujet-texte></strong></span>
+              <button type="button" data-sujet-retirer>Retirer</button>
+              <input type="hidden" name="sujet" value="">
+            </p>
+            <div class="champ">
+              <label for="prenom">Votre prénom</label>
+              <input id="prenom" name="prenom" type="text" autocomplete="given-name" required aria-describedby="prenom-erreur">
+              <p class="champ__erreur" id="prenom-erreur" hidden>Indiquez votre prénom.</p>
+            </div>
+            <fieldset class="champ">
+              <legend class="cache-visuel">Comment vous joindre</legend>
+              <div class="deux-champs">
+                <div class="champ">
+                  <label for="telephone">Votre téléphone</label>
+                  <input id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="joindre-aide joindre-erreur">
+                </div>
+                <div class="champ">
+                  <label for="courriel">Votre e-mail</label>
+                  <input id="courriel" name="courriel" type="email" autocomplete="email" aria-describedby="joindre-aide joindre-erreur">
+                </div>
+              </div>
+              <p class="champ__aide" id="joindre-aide">Un seul des deux suffit.</p>
+              <p class="champ__erreur" id="joindre-erreur" hidden>Indiquez un téléphone ou un e-mail, pour qu’on puisse vous joindre.</p>
+            </fieldset>
+            <div class="cache-visuel" aria-hidden="true">
+              <label for="site-web">Ne remplissez pas ce champ</label>
+              <input id="site-web" name="site-web" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="bouton bouton--large" type="submit" data-envoyer disabled>Être rappelé</button>
+            <p class="maquette-note" data-formulaire-note>Maquette&nbsp;: le formulaire n’est pas encore branché. Rien n’est envoyé.</p>
+            <p class="formulaire__legal">On vous rappelle sous 48&nbsp;h ouvrées. Vos coordonnées servent uniquement à vous rappeler. N’indiquez ni données de santé, ni informations couvertes par le secret professionnel, ni noms de vos clients ou patients.</p>
+          </form>
+          <div class="confirmation" data-confirmation role="status" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied__dedans">
+    <div>
+      <a class="marque pied__marque" href="index.html">
+        <img class="marque__logo" src="assets/img/logo-bh.webp" width="251" height="160" alt="" loading="lazy">
+        <span class="marque__texte">
+          <span class="marque__nom">Benjamin Huteau</span>
+          <span class="marque__metier">Consultant IA</span>
+        </span>
+      </a>
+      <p>Basé près d’Angers · France entière à distance.</p>
+      <p>Automatisation de tâches et formation à l’IA pour les petites entreprises.</p>
+    </div>
+    <nav aria-label="Pied de page">
+      <h2>Sur ce site</h2>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html#preuve">Un vrai test</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="tarifs.html#questions">Vos questions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div id="legal">
+      <h2>Mentions légales et confidentialité</h2>
+      <p><a href="mentions-legales.html">Mentions légales</a><br><a href="confidentialite.html">Confidentialité et données personnelles</a></p>
+      <p class="pied__note">Maquettes : les champs entre crochets seront remplis à la création de l’entreprise.</p>
+    </div>
+  </div>
+  <p class="pied__fin">© 2026 Benjamin Huteau · Maquette du 17/11/2026&nbsp;: ce site n’est pas encore en ligne.</p>
+</footer>
+
+<div class="barre" data-barre>
+  <button class="bouton bouton--secondaire" type="button" popovertarget="menu-mobile">Menu</button>
+  <a class="bouton bouton--secondaire" href="tel:+33199000000">Appeler</a>
+  <a class="bouton" href="contact.html"><span class="bouton__long">Réserver un appel de 30&nbsp;min</span><span class="bouton__court">Réserver un appel</span><span class="bouton__mini">Réserver</span></a>
+</div>
+
+</body>
+</html>

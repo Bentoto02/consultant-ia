@@ -1,0 +1,19 @@
+# En-têtes de sécurité et de cache, lus par Cloudflare Pages et Netlify.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# La page d'accueil doit toujours être revalidée pour recevoir les mises à jour.
+/index.html
+  Cache-Control: no-cache
+
+# Polices et images : elles changent rarement, le navigateur peut les garder une semaine.
+/assets/polices/*
+  Cache-Control: public, max-age=604800
+/assets/img/*
+  Cache-Control: public, max-age=604800
